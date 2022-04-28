@@ -153,12 +153,13 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                        left: 16.hdp(),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.hdp(),
+                        vertical: 16.vdp(),
                       ),
                       child: Text(
                         "Search Suggestions",
-                        style: AppTextThemes().headline2,
+                        style: AppTextThemes().headline3,
                       ),
                     ),
                     SuggestionTileList(

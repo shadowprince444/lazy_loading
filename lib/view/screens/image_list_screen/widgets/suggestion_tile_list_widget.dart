@@ -76,44 +76,49 @@ class ImageTile extends StatelessWidget {
       onTap: () => onTapOnTile(
         index,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.grey.withOpacity(.5) : Colors.transparent,
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(
-              32.vdp(),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width / 4,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.grey : Colors.transparent,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(
+                32.vdp(),
+              ),
             ),
           ),
-        ),
-        height: 88.vdp(),
-        padding: EdgeInsets.symmetric(
-          vertical: 4.vdp(),
-        ),
-        width: MediaQuery.of(context).size.width / 4,
-        child: Column(
-          children: [
-            const Expanded(child: SizedBox()),
-            Container(
-              height: 56.vdp(),
-              width: 56.vdp(),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isSelected ? Colors.white : const Color(0xFF606060),
+          height: 88.vdp(),
+          padding: EdgeInsets.symmetric(
+            vertical: 4.vdp(),
+          ),
+          margin: EdgeInsets.symmetric(
+            horizontal: 10.hdp(),
+          ),
+          child: Column(
+            children: [
+              const Expanded(child: SizedBox()),
+              Container(
+                height: 56.vdp(),
+                width: 56.vdp(),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isSelected ? Colors.white : const Color(0xFF606060),
+                ),
+                padding: EdgeInsets.all(
+                  8.vdp(),
+                ),
+                child: SvgPicture.asset(
+                  paginationController.suggestiveSearches[index].iconPath,
+                ),
               ),
-              padding: EdgeInsets.all(
-                8.vdp(),
-              ),
-              child: SvgPicture.asset(
-                paginationController.suggestiveSearches[index].iconPath,
-              ),
-            ),
-            SizedBox(
-                height: 16.vdp(),
-                child: Text(
-                  paginationController.suggestiveSearches[index].searchText.toUpperCase(),
-                  style: AppTextThemes().bodyText2.copyWith(color: isSelected ? Colors.white : Colors.black),
-                ))
-          ],
+              SizedBox(
+                  height: 16.vdp(),
+                  child: Text(
+                    paginationController.suggestiveSearches[index].searchText.toUpperCase(),
+                    style: AppTextThemes().bodyText2.copyWith(color: isSelected ? Colors.white : Colors.black),
+                  ))
+            ],
+          ),
         ),
       ),
     );
