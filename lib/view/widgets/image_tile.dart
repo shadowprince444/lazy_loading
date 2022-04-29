@@ -19,7 +19,7 @@ class ImageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        VSpace(2),
+        const VSpace(2),
         GestureDetector(
           onTap: () => Get.to(
             () => ImagePreviewScreen(imageModel: imageModel),

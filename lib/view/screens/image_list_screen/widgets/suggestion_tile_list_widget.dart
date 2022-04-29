@@ -18,40 +18,55 @@ class SuggestionTileList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<PaginationController>(builder: (paginationController) {
       if (paginationController.showSearchSuggestion) {
-        return SizedBox(
-          height: 88.vdp(),
-          width: double.infinity,
-          // color: Colors.amber,
-          // padding: EdgeInsets.symmetric(vertical: 8.vdp()),
-          child: ListView.builder(
-            // padding: EdgeInsets.only(
-            //   left: 8.vdp(),
-            // ),
-            itemCount: paginationController.suggestiveSearches.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              bool isSelected = paginationController.suggestiveSearches[index].searchText == paginationController.selectedSearchSuggestion?.searchText;
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.hdp(),
+                vertical: 16.vdp(),
+              ),
+              child: Text(
+                "Search Suggestions",
+                style: AppTextThemes().headline3,
+              ),
+            ),
+            SizedBox(
+              height: 88.vdp(),
+              width: double.infinity,
+              // color: Colors.amber,
+              // padding: EdgeInsets.symmetric(vertical: 8.vdp()),
+              child: ListView.builder(
+                // padding: EdgeInsets.only(
+                //   left: 8.vdp(),
+                // ),
+                itemCount: paginationController.suggestiveSearches.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  bool isSelected = paginationController.suggestiveSearches[index].searchText == paginationController.selectedSearchSuggestion?.searchText;
 
-              if (isSelected) {
-                return ImageTile(
-                  isSelected: isSelected,
-                  onTapOnTile: onTapOnTile,
-                  index: index,
-                  paginationController: paginationController,
-                );
-              } else {
-                return ImageTile(
-                  isSelected: isSelected,
-                  onTapOnTile: onTapOnTile,
-                  index: index,
-                  paginationController: paginationController,
-                );
-              }
-            },
-          ),
+                  if (isSelected) {
+                    return ImageTile(
+                      isSelected: isSelected,
+                      onTapOnTile: onTapOnTile,
+                      index: index,
+                      paginationController: paginationController,
+                    );
+                  } else {
+                    return ImageTile(
+                      isSelected: isSelected,
+                      onTapOnTile: onTapOnTile,
+                      index: index,
+                      paginationController: paginationController,
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
         );
       } else {
-        return VSpace(0);
+        return const VSpace(0);
       }
     });
   }

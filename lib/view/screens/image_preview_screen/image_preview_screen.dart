@@ -39,7 +39,7 @@ class ImagePreviewScreen extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        HSpace(4),
+                        const HSpace(4),
                         IconButton(
                           onPressed: () => Get.back(),
                           icon: Icon(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:pixabay_pagination_example/models/api_response_model.dart';
 import 'package:pixabay_pagination_example/models/pixaby_response_model.dart';
@@ -70,7 +71,9 @@ class PaginationController extends GetxController {
         addImagesToTheList(response.data);
       }
     }
-    print("Current Index: $currentPage");
+
+    debugPrint("Current Index: $currentPage");
+
     removeLoading();
   }
 

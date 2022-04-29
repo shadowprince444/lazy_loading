@@ -39,7 +39,7 @@ class DioClient {
         HttpHeaders.contentTypeHeader: "application/json",
       },
     );
-    _dio.options.baseUrl = ApiUrls.baseUrl;
+    // _dio.options.baseUrl = ApiUrls.baseUrl;
     return _dio;
   }
 

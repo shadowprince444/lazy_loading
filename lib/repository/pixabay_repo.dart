@@ -16,7 +16,7 @@ class PixabayRepo implements IPixabayRepo {
     }
   }
 
-  queryBuilder(int pageIndex, int itemsPerPage, String searchTerm) {
+  String queryBuilder(int pageIndex, int itemsPerPage, String searchTerm) {
     return "&q=$searchTerm&per_page=$itemsPerPage&page=$pageIndex&image_type=photo";
   }
 }

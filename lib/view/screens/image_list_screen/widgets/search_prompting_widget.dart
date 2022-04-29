@@ -14,7 +14,7 @@ class SearchPromptingWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          VSpace(100),
+          const VSpace(100),
           Icon(
             Icons.search_rounded,
             size: 200.vdp(),

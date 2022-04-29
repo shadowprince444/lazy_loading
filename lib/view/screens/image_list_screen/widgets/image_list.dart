@@ -65,7 +65,7 @@ class ImageList extends StatelessWidget {
                         ImageModel imageModel = paginationController.pixabayImageResponseModel!.hits[index];
                         return Column(
                           children: [
-                            VSpace(8),
+                            const VSpace(8),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                 vertical: 8.vdp(),
@@ -80,7 +80,7 @@ class ImageList extends StatelessWidget {
                                           Icons.person,
                                           size: 16.vdp(),
                                         ),
-                                        HSpace(4),
+                                        const HSpace(4),
                                         Text(
                                           imageModel.user,
                                           maxLines: 1,
@@ -98,12 +98,12 @@ class ImageList extends StatelessWidget {
                                     imageModel.likes.toString(),
                                     Icons.thumb_up_alt_outlined,
                                   ),
-                                  HSpace(4),
+                                  const HSpace(4),
                                   buildIconText(
                                     imageModel.comments.toString(),
                                     Icons.chat,
                                   ),
-                                  HSpace(4),
+                                  const HSpace(4),
                                   buildIconText(
                                     imageModel.downloads.toString(),
                                     Icons.download_rounded,
@@ -122,7 +122,7 @@ class ImageList extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           );
                         } else {
-                          return VSpace(0);
+                          return const VSpace(0);
                         }
                       },
                     ),
@@ -159,7 +159,7 @@ class ImageList extends StatelessWidget {
             iconData,
             size: 12.vdp(),
           ),
-          HSpace(4),
+          const HSpace(4),
           Text(
             text,
           ),

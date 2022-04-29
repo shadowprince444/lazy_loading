@@ -13,7 +13,7 @@ class EmptyResultsWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          VSpace(150),
+          const VSpace(150),
           Icon(
             Icons.warning_amber_outlined,
             size: 200.vdp(),

@@ -152,16 +152,6 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.hdp(),
-                        vertical: 16.vdp(),
-                      ),
-                      child: Text(
-                        "Search Suggestions",
-                        style: AppTextThemes().headline3,
-                      ),
-                    ),
                     SuggestionTileList(
                       onTapOnTile: (index) {
                         _controller.selectSearchSuggestion(index);
