@@ -13,5 +13,6 @@ class ApiResponse<T> {
     return "ApiResponseStatus : $status \n Message : $message \n Data : $data";
   }
 }
+
 /// [enums] to define [API] response status
 enum ApiResponseStatus { idle, loading, completed, unProcessable, error }
