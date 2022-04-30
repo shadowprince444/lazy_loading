@@ -10,6 +10,7 @@ import 'package:pixabay_pagination_example/utils/screen_utils/widgets/spacing_wi
 import 'package:pixabay_pagination_example/utils/theme/text_themes.dart';
 import 'package:pixabay_pagination_example/view/screens/image_list_screen/widgets/image_list.dart';
 import 'package:pixabay_pagination_example/view/screens/image_list_screen/widgets/suggestion_tile_list_widget.dart';
+import 'package:pixabay_pagination_example/view/widgets/app_custom_scaffold.dart';
 
 class PaginatedScreen extends StatefulWidget {
   const PaginatedScreen({
@@ -21,6 +22,8 @@ class PaginatedScreen extends StatefulWidget {
 }
 
 class _PaginatedScreenState extends State<PaginatedScreen> {
+  final textFieldFocusNode = FocusNode();
+
   String searchTerm = "Avengers";
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
@@ -44,27 +47,31 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
   }
 
   @override
+  void dispose() {
+    searchController.dispose();
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return WillPopScope(
-      onWillPop: () {
-        if (!_controller.isLoading) {
-          searchController.clear();
-          _controller.showSuggestion();
-          _controller.removeSelectedSearchSuggestion();
-          _controller.resetSearchedImages();
-        }
-        return Future.value(false);
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        key: _scaffoldKey,
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.dark.copyWith(
-            // statusBarColor: const Color(0xffC42B6E),
-            statusBarColor: Colors.white,
-          ),
-          child: ResponsiveSafeArea(
+        onWillPop: () {
+          if (!_controller.isLoading) {
+            searchController.clear();
+            textFieldFocusNode.unfocus();
+            _controller.showSuggestion();
+            _controller.removeSelectedSearchSuggestion();
+            _controller.resetSearchedImages();
+          }
+          return Future.value(false);
+        },
+        child: AppCustomScaffold(
+          backgroundColor: Colors.white,
+          key: _scaffoldKey,
+          statusBarColor: Colors.white,
+          body: ResponsiveSafeArea(
             builder: (context, size) {
               return SizedBox(
                 width: size.width,
@@ -105,7 +112,7 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
                                 // ),
                                 ),
                           ),
-                          HSpace(8),
+                          const HSpace(8),
                           Expanded(
                             flex: 12,
                             child: Column(
@@ -115,6 +122,7 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
                                   keyboardType: TextInputType.visiblePassword,
                                   cursorColor: Colors.black,
                                   controller: searchController,
+                                  focusNode: textFieldFocusNode,
                                   onEditingComplete: () {
                                     _controller.removeSelectedSearchSuggestion();
                                     _controller.hideSuggestion();
@@ -135,7 +143,7 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
                                     border: searchInputBorder,
                                   ),
                                 ),
-                                VSpace(4),
+                                const VSpace(4),
                                 Container(
                                   height: 2.vdp(),
                                   width: double.infinity,
@@ -172,8 +180,6 @@ class _PaginatedScreenState extends State<PaginatedScreen> {
               );
             },
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

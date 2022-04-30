@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixabay_pagination_example/models/image_model.dart';
@@ -27,27 +28,40 @@ class ImageTile extends StatelessWidget {
           child: SizedBox(
             width: imageWidth,
             height: imageHeight,
-            child: Image.network(
-              imageModel.largeImageURL,
-              fit: BoxFit.contain,
-              loadingBuilder: (context, widget, image) {
-                if (image == null) {
-                  return widget;
-                } else {
-                  return Image.network(
+            child: CachedNetworkImage(
+              imageUrl: imageModel.largeImageURL,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              progressIndicatorBuilder: (context, url, downloadProgress) => Stack(
+                children: [
+                  Image.network(
                     imageModel.previewURL,
                     fit: BoxFit.contain,
+                    height: double.infinity,
+                    width: double.infinity,
                     errorBuilder: (context, object, trace) => const Icon(
                       Icons.broken_image,
                       color: Colors.grey,
                     ),
-                  );
-                }
-              },
-              errorBuilder: (context, object, trace) => const Icon(
-                Icons.broken_image,
-                color: Colors.grey,
+                  ),
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
         ),

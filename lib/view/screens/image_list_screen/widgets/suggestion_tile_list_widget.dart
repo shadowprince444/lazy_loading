@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -19,6 +20,7 @@ class SuggestionTileList extends StatelessWidget {
     return GetBuilder<PaginationController>(builder: (paginationController) {
       if (paginationController.showSearchSuggestion) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
@@ -46,14 +48,14 @@ class SuggestionTileList extends StatelessWidget {
                   bool isSelected = paginationController.suggestiveSearches[index].searchText == paginationController.selectedSearchSuggestion?.searchText;
 
                   if (isSelected) {
-                    return ImageTile(
+                    return SearchSuggestionImageTile(
                       isSelected: isSelected,
                       onTapOnTile: onTapOnTile,
                       index: index,
                       paginationController: paginationController,
                     );
                   } else {
-                    return ImageTile(
+                    return SearchSuggestionImageTile(
                       isSelected: isSelected,
                       onTapOnTile: onTapOnTile,
                       index: index,
@@ -72,8 +74,8 @@ class SuggestionTileList extends StatelessWidget {
   }
 }
 
-class ImageTile extends StatelessWidget {
-  const ImageTile({
+class SearchSuggestionImageTile extends StatelessWidget {
+  const SearchSuggestionImageTile({
     Key? key,
     required this.isSelected,
     required this.onTapOnTile,

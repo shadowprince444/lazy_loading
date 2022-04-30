@@ -8,6 +8,8 @@ import '../models/search_suggestion_model.dart';
 
 class PaginationController extends GetxController {
   bool showSearchSuggestion = true;
+
+  String searchTerm = "";
   SearchSuggestionModel? selectedSearchSuggestion;
   List<SearchSuggestionModel> suggestiveSearches = [
     SearchSuggestionModel(iconPath: "assets/images/custom_flower_icon.svg", searchText: "Flowers"),
