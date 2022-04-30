@@ -3,6 +3,7 @@ import 'package:pixabay_pagination_example/models/api_response_model.dart';
 import 'package:pixabay_pagination_example/models/pixaby_response_model.dart';
 import 'package:pixabay_pagination_example/services/dio_client.dart';
 
+///concrete implementation for the [PixabayRepo] (repository)using the [IPixabayRepo] (interface) definition
 class PixabayRepo implements IPixabayRepo {
   final _dioClient = DioClient();
 
@@ -16,6 +17,7 @@ class PixabayRepo implements IPixabayRepo {
     }
   }
 
+  ///for building the query from [pageIndex],[itemsPerPage] and [searchTerm]
   String queryBuilder(int pageIndex, int itemsPerPage, String searchTerm) {
     return "&q=$searchTerm&per_page=$itemsPerPage&page=$pageIndex&image_type=photo";
   }

@@ -3,15 +3,19 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+///for storing [API] urls
 class ApiUrls {
   static String baseUrl = "https://pixabay.com/api/?key=25823813-5dad6a89a5c945d779c7ae6f4";
 }
 
+/// [enums] to define [API] methods
 enum ApiMethod { post, get, put, delete, patch }
 
+/// Service for calling [REST] [APIs] using [Dio]
 class DioClient {
   static Dio? _dioWithoutToken;
 
+  /// helps to create a [Singleton] instance of [Dio]
   Dio get unAuthenticatedInstance {
     _dioWithoutToken ??= _initWithOutToken();
     return _dioWithoutToken!;
@@ -21,6 +25,7 @@ class DioClient {
     _dioWithoutToken ??= _initWithOutToken();
   }
 
+  /// initializing [Dio] with [BaseOptions]
   Dio _initWithOutToken() {
     Dio _dio = Dio();
     _dio.options = BaseOptions(
@@ -43,10 +48,14 @@ class DioClient {
     return _dio;
   }
 
+  ///for [API] request and response handling
+  ///[uri] is the [path] in the [URL],
+  ///[method] is the [ApiMethod] enum that determines the request type(ie, [Get],[Post],[Put]..etc),
+  ///[params] is the data to be sent in the body
+  ///[formData] is the data to be sent in the [FormData] (used for image uploading).
   Future<Response> request({
     required String uri,
     required ApiMethod method,
-    String? baseUrl,
     String? params,
     FormData? formData,
   }) async {
